@@ -1,9 +1,9 @@
 import requests
-import twitch_api_auth
+import twitch_api_login
 
 authURL = 'https://id.twitch.tv/oauth2/token'
-Client_ID = twitch_api_auth.Client_ID
-Secret = twitch_api_auth.Secret
+Client_ID = twitch_api_login.Client_ID
+Secret = twitch_api_login.Secret
 
 AutParams = {'client_id': Client_ID,
              'client_secret': Secret,

@@ -1,13 +1,16 @@
 import requests
-import twitch_api_auth
+import twitch_api_login
 import twitch_api_get_auth
 
-def get_user_id(access_token, streamer):
 
-    head = {
-        'Client-ID': twitch_api_auth.Client_ID,
-        'Authorization': "Bearer " + access_token
-    }
+access_token = twitch_api_get_auth.get_auth()
+
+head = {
+    'Client-ID': twitch_api_login.Client_ID,
+    'Authorization': "Bearer " + access_token
+}
+
+def get_user_id(head, streamer):
 
     endpoint = 'https://api.twitch.tv/helix/users?login=' + streamer
 
@@ -18,11 +21,18 @@ def get_user_id(access_token, streamer):
     return 'problem with username'
 
 
-access_token = twitch_api_get_auth.get_auth()
+id_twitch = get_user_id(head, 'dev_optic')
 
-print(get_user_id(access_token, 'dev_optic'))
+print(id_twitch)
+def get_user_follows(id_twitch):
+    endpoint = 'https://api.twitch.tv/helix/users/follows?to_id=' + id_twitch
+
+    response = requests.get(endpoint, headers=head).json()
+
+    return response
+
+
+print(get_user_follows(id_twitch))
 
 
 
-# https://api.twitch.tv/helix/users/follows?to_id=23161357'
-#%%
