@@ -1,21 +1,43 @@
 import requests
 from bs4 import BeautifulSoup
+import time
+import csv
+import pandas as pd
 
-url = "https://twitchtracker.com/channels/ranking/french"
-page = requests.get(url, headers={'User-Agent': 'Mozilla/5.0 (Platform; Security; OS-or-CPU; Localization; rv:1.4) Gecko/20030624 Netscape/7.1 (ax)'})
+# streamers = {}
 
-soup = BeautifulSoup(page.content, "html.parser")
+# Initialize the dictionary
+streamers = []
 
-# Récupère tous les éléments de la liste
-streamer_elements = soup.find_all("td")
+def scrap_top_2500():
+    for i in range(1, 49):
+        url = "https://twitchtracker.com/channels/ranking/french?page=" + str(i)
+        print(f"je request actuellement {url}")
 
-for a in soup.find_all('a', href=True):
-    print (a['href'])
+        request = requests.get(url, headers={'User-Agent': 'Mozilla/5.0 (Platform; Security; OS-or-CPU; Localization; rv:1.4) Gecko/20030624 Netscape/7.1 (ax)'})
+
+        soup = BeautifulSoup(request.content, "html.parser")
+
+        # Récupère tous les éléments de la liste
+        streamer_elements = soup.select("td:nth-child(3) > a")
+
+        for pseudo in streamer_elements:
+            # print(f"j'enregistre actuellement le streamer : {pseudo.get_text(strip=True)}")
+            streamers.append(pseudo.get_text(strip=True))
+            time.sleep(0.05)
+
+    return streamers
+
+streamers = scrap_top_2500()
+
+print(len(streamers))
+
+#transform list to dataframe
+df = pd.DataFrame(streamers)
+
+# saving the dataframe
+df.to_csv('../top_2400_streamer.csv', index=False, header=False)
 
 
 
 
-# Pour chaque élément de la liste, récupère le pseudo du streamer
-# for streamer_element in streamer_elements:
-#     username = streamer_element.find("a").getText()
-#     print(username)
