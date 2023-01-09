@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../00000000_LIVE_TWITCH_ANAYSE/.idea/00000000_LIVE_TWITCH_ANAYSE.iml" filepath="$PROJECT_DIR$/../../00000000_LIVE_TWITCH_ANAYSE/.idea/00000000_LIVE_TWITCH_ANAYSE.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/TWITCH_USER_MAP.iml" filepath="$PROJECT_DIR$/.idea/TWITCH_USER_MAP.iml" />
     </modules>
   </component>

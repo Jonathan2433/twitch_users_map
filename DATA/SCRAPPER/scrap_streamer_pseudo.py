@@ -1,16 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
 import time
-import csv
 import pandas as pd
 
-# streamers = {}
 
-# Initialize the dictionary
 streamers = []
 
 def scrap_top_2500():
-    for i in range(1, 49):
+    for i in range(1, 51):
         url = "https://twitchtracker.com/channels/ranking/french?page=" + str(i)
         print(f"je request actuellement {url}")
 
@@ -22,7 +19,7 @@ def scrap_top_2500():
         streamer_elements = soup.select("td:nth-child(3) > a")
 
         for pseudo in streamer_elements:
-            # print(f"j'enregistre actuellement le streamer : {pseudo.get_text(strip=True)}")
+            print(f"j'enregistre actuellement le streamer : {pseudo.get_text(strip=True)}")
             streamers.append(pseudo.get_text(strip=True))
             time.sleep(0.05)
 
@@ -36,8 +33,7 @@ print(len(streamers))
 df = pd.DataFrame(streamers)
 
 # saving the dataframe
-df.to_csv('../top_2400_streamer.csv', index=False, header=False)
-
+df.to_csv('../top_2500_streamer.csv', index=False, header=False)
 
 
 
