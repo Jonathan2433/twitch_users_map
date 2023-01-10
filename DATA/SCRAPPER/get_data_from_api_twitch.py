@@ -10,23 +10,13 @@ access_token = auth.get_auth()
 
 call_api = ca.Call_api_service(client_id, access_token)
 
-dev_optic_id = call_api.get_user_id('datalgo')
+streamer_id = call_api.get_user_id('dev_optic')
 
-# dev_optic_followers = call_api.get_user_follows(dev_optic_id)
+print(streamer_id)
+dev_optic_followers = call_api.get_user_follows(streamer_id)
 
-# print(dev_optic_followers)
+print(dev_optic_followers)
 
-streams = call_api.get_streams()
+# todo faire une boucle qui parcours ma liste des 2500 streamers, pour chaque streamer, faire l'apel d'apî pour recup son ID_twitch ET stocker cet id sur notre csv
+#  et ensuite refaire un appel d'api pour récup ses followers
 
-print(streams)
-# channel_informations = call_api.get_channel_informations(dev_optic_id)
-#
-# print(channel_informations)
-
-# channel_editors = call_api.get_channel_editors(dev_optic_id)
-#
-# print(channel_editors)
-#
-# get_user = call_api.get_user(dev_optic_id)
-#
-# print(get_user)
