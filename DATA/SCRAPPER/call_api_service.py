@@ -28,6 +28,15 @@ class Call_api_service:
         response = requests.get(endpoint, headers=self.head).json()
 
         return response
+
+    def pagination(self, id_twitch, cursor):
+        endpoint = 'https://api.twitch.tv/helix/users/follows?to_id=' + id_twitch + '&after=' + cursor
+
+        response = requests.get(endpoint, headers=self.head).json()
+
+        return response
+
+
     # get all streams on twitch RIGHT NOW
     def get_streams(self):
         endpoint = 'https://api.twitch.tv/helix/streams?language=fr'
