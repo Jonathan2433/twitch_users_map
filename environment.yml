@@ -1,0 +1,14 @@
+name: DataScience
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - numpy
+  - pandas
+  - ipykernel
+  - plotly
+  - jupyter
+  - plotly
